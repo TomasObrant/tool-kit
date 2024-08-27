@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Users\Domain\Entity;
 
-use App\Shared\Domain\Entity\AbstractEntity;
 use App\Auth\Domain\Security\AuthUserInterface;
+use App\Shared\Domain\Entity\AbstractEntity;
 use App\Users\Domain\Service\UserPasswordHasherInterface;
 use App\Users\Infrastucture\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;

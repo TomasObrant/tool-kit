@@ -9,15 +9,14 @@ class UserFactory
 {
     public function __construct(
         private UserPasswordHasherInterface $passwordHasher,
-    ){
+    ) {
     }
 
     public function create(
         string $login,
         string $email,
         string $password,
-    ): User
-    {
+    ): User {
         $user = new User();
         $user->setLogin($login);
         $user->setEmail($email);

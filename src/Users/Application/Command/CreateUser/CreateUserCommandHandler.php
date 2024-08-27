@@ -11,7 +11,7 @@ class CreateUserCommandHandler implements CommandHandlerInterface
     public function __construct(
         private readonly UserRepositoryInterface $userRepository,
         private readonly UserFactory $userFactory,
-    ){
+    ) {
     }
 
     public function __invoke(CreateUserCommand $createUserCommand): string
@@ -22,7 +22,9 @@ class CreateUserCommandHandler implements CommandHandlerInterface
             password: $createUserCommand->password,
         );
 
-        $this->userRepository->add($user);
+        $this->userRepository->add(
+            user: $user
+        );
 
         return $user->getUserIdentifier();
     }

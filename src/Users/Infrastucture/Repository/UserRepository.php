@@ -7,7 +7,6 @@ namespace App\Users\Infrastucture\Repository;
 use App\Users\Domain\Entity\User;
 use App\Users\Domain\Repository\UserRepositoryInterface;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -58,5 +57,4 @@ class UserRepository extends ServiceEntityRepository implements UserRepositoryIn
         $this->entityManager->persist($user);
         $this->entityManager->flush();
     }
-
 }

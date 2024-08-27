@@ -1,18 +1,19 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Users\UI\Controller;
 
 use App\Auth\Domain\Security\UserFetcherInterface;
+use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
-use OpenApi\Attributes as OA;
 
 class GetUserController
 {
     public function __construct(
         private readonly UserFetcherInterface $userFetcher,
-    ){
+    ) {
     }
 
     #[Route('/api/users/user', name: 'users_get_user', methods: ['GET'])]
@@ -39,7 +40,7 @@ class GetUserController
             new OA\Response(
                 response: 404,
                 description: 'Пользователь не найден'
-            )
+            ),
         ]
     )]
     public function __invoke(): JsonResponse

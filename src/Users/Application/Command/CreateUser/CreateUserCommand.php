@@ -10,6 +10,6 @@ class CreateUserCommand implements CommandInterface
         public readonly string $login,
         public readonly string $email,
         public readonly string $password,
-    ){
+    ) {
     }
 }
