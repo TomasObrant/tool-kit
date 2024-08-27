@@ -34,6 +34,12 @@ doctrine:
                 dir: '%kernel.project_dir%/src/Users/Domain/Entity'
                 prefix: 'App\Users\Domain\Entity'
                 alias: Users
+            Applications:
+                type: attribute
+                is_bundle: false
+                dir: '%kernel.project_dir%/src/Applications/Domain/Entity'
+                prefix: 'App\Applications\Domain\Entity'
+                alias: Applications
         controller_resolver:
             auto_mapping: false
 

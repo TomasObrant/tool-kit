@@ -7,8 +7,3 @@ Content-Type: application/json
 }
 
 > {% client.global.set("auth_token", response.body.token); %}
-
-###
-GET http://localhost:8876/api/users/user
-Content-Type: application/json
-Authorization: Bearer {{auth_token}}

@@ -1,0 +1,15 @@
+###
+POST http://localhost:8876/api/user
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+{
+  "login":"super-user",
+  "email":"test@test.com",
+  "password":"secret"
+}
+
+###
+GET http://localhost:8876/api/user
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}

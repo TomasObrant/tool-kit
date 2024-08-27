@@ -16,7 +16,7 @@ class GetUserController
     ) {
     }
 
-    #[Route('/api/users/user', name: 'users_get_user', methods: ['GET'])]
+    #[Route('/api/user', name: 'user_current', methods: ['GET'])]
     #[OA\Get(
         path: '/api/users/user',
         summary: 'Получить информацию о текущем пользователе',
