@@ -1,0 +1,46 @@
+version: '3'
+
+services:
+  pgsql:
+    image: postgres:16
+    container_name: pgsql
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    ports:
+      - '5444:5432'
+    networks:
+      - internal
+    volumes:
+      - ./docker/db/db-data:/var/lib/postgresql/data
+
+  php-fpm:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    container_name: php-fpm
+    networks:
+      - internal
+    volumes:
+      - ./:/var/www/app
+    depends_on:
+      - pgsql
+
+  nginx:
+    build:
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
+    container_name: nginx
+    ports:
+      - "8876:80"
+    networks:
+      - internal
+    volumes:
+      - ./:/var/www/app
+    depends_on:
+      - php-fpm
+
+networks:
+  internal:
+    driver: bridge
