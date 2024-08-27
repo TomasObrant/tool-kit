@@ -3,7 +3,7 @@ version: '3'
 services:
   pgsql:
     image: postgres:16
-    container_name: pgsql
+    container_name: ${APP_NAME}_pgsql
     environment:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
@@ -19,7 +19,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/php/Dockerfile
-    container_name: php-fpm
+    container_name: ${APP_NAME}_php-fpm
     networks:
       - internal
     volumes:
@@ -31,7 +31,7 @@ services:
     build:
       context: .
       dockerfile: ./docker/nginx/Dockerfile
-    container_name: nginx
+    container_name: ${APP_NAME}_nginx
     ports:
       - "8876:80"
     networks:
