@@ -5,27 +5,41 @@ namespace App\Users\Application\Command\CreateUser;
 use App\Shared\Application\Command\CommandHandlerInterface;
 use App\Users\Domain\Factory\UserFactory;
 use App\Users\Domain\Repository\UserRepositoryInterface;
+use Doctrine\ORM\EntityManagerInterface;
+use Psr\Log\LoggerInterface;
 
-class CreateUserCommandHandler implements CommandHandlerInterface
+final readonly class CreateUserCommandHandler implements CommandHandlerInterface
 {
     public function __construct(
-        private readonly UserRepositoryInterface $userRepository,
-        private readonly UserFactory $userFactory,
+        private UserRepositoryInterface $userRepository,
+        private LoggerInterface $logger,
+        private UserFactory $userFactory,
+        private EntityManagerInterface $entityManager,
     ) {
     }
 
-    public function __invoke(CreateUserCommand $createUserCommand): string
+    public function __invoke(CreateUserCommand $createUserCommand): array
     {
-        $user = $this->userFactory->create(
-            login: $createUserCommand->login,
-            email: $createUserCommand->email,
-            password: $createUserCommand->password,
-        );
+        try {
+            $user = $this->userFactory->create(
+                $createUserCommand->login,
+                $createUserCommand->email,
+                $createUserCommand->password,
+            );
 
-        $this->userRepository->add(
-            user: $user
-        );
+//            $this->userRepository->add($user);
 
-        return $user->getUserIdentifier();
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
+
+            return $user->getArray();
+        } catch (\Exception $exception) {
+            $this->logger->error('Не удалось сохранить пользователя', [
+                'class' => __CLASS__,
+                'exceptionMessage' => $exception->getMessage(),
+                'exceptionType' => get_class($exception),
+            ]);
+            throw $exception;
+        }
     }
 }

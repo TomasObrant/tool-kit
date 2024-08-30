@@ -5,37 +5,38 @@ declare(strict_types=1);
 namespace App\Users\UI\Controller;
 
 use App\Shared\Application\Command\CommandBusInterface;
-use App\Shared\Domain\Validator\RequestValidatorInterface;
-use App\Shared\Infrastructure\Validator\RequestValidator;
-use App\Users\Application\Command\CreateUser\CreateUserCommand;
+use App\Users\Application\Command\UpdateUser\UpdateUserCommand;
 use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class CreateUserController
+class UpdateUserController
 {
     public function __construct(
         private readonly CommandBusInterface $commandBus,
-        private readonly RequestValidatorInterface $requestValidator,
+        private readonly ValidatorInterface $validator,
     ) {
     }
 
-    #[Route('/api/user', name: 'user_create', methods: ['POST'])]
-    public function __invoke(Request $request): JsonResponse
+    #[Route('/api/user/{id}', name: 'user_update', methods: ['PUT'])]
+    public function __invoke(Request $request, int $id): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
-        $command = new CreateUserCommand(
-            $data['login'] ?? null,
-            $data['email'] ?? null,
-            $data['password'] ?? null,
+        $command = new UpdateUserCommand(
+            $data['id'],
+            $data['login'],
+            $data['email'],
+            $data['password'],
+            $data['role'],
         );
 
-        $validationErrors = $this->requestValidator->validate($command);
-        if (!empty($validationErrors)) {
+        $errors = $this->validator->validate($command);
+        if (count($errors) > 0) {
             return new JsonResponse(
-                ['errors' => $validationErrors],
+                ['errors' => (string) $errors],
                 Response::HTTP_BAD_REQUEST
             );
         }

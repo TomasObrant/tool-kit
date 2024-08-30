@@ -1,21 +1,57 @@
 ###
 POST http://localhost:8876/api/application
 Content-Type: application/json
-Authorization: Bearer {{auth_token}}
+Authorization: Bearer {{token}}
 
 {
-  "login":"super-user",
-  "email":"test@test.com",
-  "password":"secret"
+  "topic":"topic",
+  "message":"message",
+  "comment":"comment"
 }
 
 ###
 PUT http://localhost:8876/api/application
 Content-Type: application/json
-Authorization: Bearer {{auth_token}}
+Authorization: Bearer {{token}}
 
 {
-  "login":"super-user",
-  "email":"test@test.com",
-  "password":"secret"
+  "topic":"topic_new",
+  "message":"message_new",
+  "comment":"comment_new"
 }
+
+###
+DELETE http://localhost:8876/api/application/{id}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+GET http://localhost:8876/api/application
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+###
+GET http://localhost:8876/api/application/{id}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### upload-photo
+POST http://localhost:8876/api/application/{id}/photo
+Authorization: Bearer {{token}}
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="value"
+
+{"group": true,"type": 1}
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="papich.jpg"
+Content-Type: image/jpg
+
+< /home/dmitriy/projects/tool-kit/http/files/papich.jpg
+--WebAppBoundary--
+
+### download-photo
+GET http://localhost:8876/api/application/{id}/photo
+Content-Type: application/json
+Authorization: Bearer {{token}}

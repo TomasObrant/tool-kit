@@ -1,15 +1,37 @@
-###
+### post
 POST http://localhost:8876/api/user
 Content-Type: application/json
-Authorization: Bearer {{auth_token}}
+Authorization: Bearer {{token}}
+
+{
+  "login":"superUser",
+  "email":"test@test.com",
+  "password":"se$cDr1et"
+}
+
+### get all
+GET http://localhost:8876/api/user
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### get
+GET http://localhost:8876/api/user/4
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### put
+PUT http://localhost:8876/api/user/{id}
+Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
   "login":"super-user",
   "email":"test@test.com",
-  "password":"secret"
+  "password":"secret",
+  "role": "ROLE_ADMIN"
 }
 
-###
-GET http://localhost:8876/api/user
+### delete
+DELETE http://localhost:8876/api/user/{id}
 Content-Type: application/json
-Authorization: Bearer {{auth_token}}
+Authorization: Bearer {{token}}

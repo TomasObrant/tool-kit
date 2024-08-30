@@ -1,22 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace App\Shared\Helpers;
+namespace App\Shared\Infrastructure\Helpers;
 
 class InsertHelper
-{
-    public static function insertUserManager(): string
-    {
-        $password = '$2y$13$2kSlEOG8POghyHtQ2SuRXeMOcT3OK2F4R5QmXty3ZuGZFmAK4ptPG';
-        $email = 'admin@admin.ru';
-        $roles = json_encode(['ROLE_MANAGER']);
-
-        return <<<EOF
-        INSERT INTO "user" (id, email, roles, password) VALUES (1, '$email', '$roles', '$password');
-        EOF;
-    }
-
-    public static function insertUserStart(): string
+{    public static function insertUserStart(): string
     {
         $login = 'dima';
         $email = 'user@user.ru';

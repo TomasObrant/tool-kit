@@ -6,10 +6,10 @@ use App\Auth\Domain\Security\AuthUserInterface;
 use App\Auth\Domain\Security\UserFetcherInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 
-class UserFetcher implements UserFetcherInterface
+final readonly class UserFetcher implements UserFetcherInterface
 {
     public function __construct(
-        private readonly Security $security
+        private Security $security
     ) {
     }
 

@@ -6,10 +6,10 @@ use App\Users\Domain\Entity\User;
 use App\Users\Domain\Service\UserPasswordHasherInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface as BaseUserPasswordHasherInterface;
 
-class UserPasswordHasher implements UserPasswordHasherInterface
+readonly class UserPasswordHasher implements UserPasswordHasherInterface
 {
     public function __construct(
-        private readonly BaseUserPasswordHasherInterface $passwordHasher,
+        private BaseUserPasswordHasherInterface $passwordHasher,
     ) {
     }
 

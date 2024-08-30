@@ -17,8 +17,8 @@ use Doctrine\ORM\Mapping as ORM;
 class User extends AbstractEntity implements AuthUserInterface
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\GeneratedValue(strategy: "IDENTITY")]
+    #[ORM\Column(type: "integer")]
     private ?int $id = null;
 
     #[ORM\Column(length: 50, nullable: true)]
@@ -94,5 +94,14 @@ class User extends AbstractEntity implements AuthUserInterface
     public function getUserIdentifier(): string
     {
         return $this->login;
+    }
+
+    public function getArray(): array
+    {
+        return [
+            'id' => $this->id,
+            'login' => $this->login,
+            'email' => $this->email,
+        ];
     }
 }
