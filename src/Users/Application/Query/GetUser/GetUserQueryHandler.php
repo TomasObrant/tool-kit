@@ -18,7 +18,7 @@ final readonly class GetUserQueryHandler implements QueryHandlerInterface
         $user = $this->userRepository->find($getUserQuery->id);
 
         if (!$user) {
-            throw new UserNotFoundException("Пользователь по данному id не найден.", 404);
+            throw new UserNotFoundException('Пользователь по данному id не найден.', 404);
         }
 
         return $user->getArray();

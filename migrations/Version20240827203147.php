@@ -20,7 +20,17 @@ final class Version20240827203147 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('CREATE TABLE "application" (id INT NOT NULL, creator_id INT DEFAULT NULL, status_id INT DEFAULT NULL, topic VARCHAR(255) DEFAULT NULL, message VARCHAR(255) DEFAULT NULL, comment VARCHAR(255) DEFAULT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, deleted_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE "application" (
+            id SERIAL PRIMARY KEY,
+            creator_id INT DEFAULT NULL,
+            status_id INT DEFAULT NULL,
+            topic VARCHAR(255) DEFAULT NULL,
+            message VARCHAR(255) DEFAULT NULL,
+            comment VARCHAR(255) DEFAULT NULL, 
+            created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, 
+            updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, 
+            deleted_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL)');
+
         $this->addSql('CREATE INDEX IDX_A45BDDC161220EA6 ON "application" (creator_id)');
         $this->addSql('CREATE INDEX IDX_A45BDDC16BF700BD ON "application" (status_id)');
         $this->addSql('CREATE TABLE "application_status" (id INT NOT NULL, name VARCHAR(255) DEFAULT NULL, PRIMARY KEY(id))');

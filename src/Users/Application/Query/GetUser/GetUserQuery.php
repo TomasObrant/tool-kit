@@ -9,6 +9,7 @@ final readonly class GetUserQuery implements QueryInterface
 {
     #[Assert\NotBlank(message: 'ID не должен быть пустым')]
     public int $id;
+
     public function __construct(
         int $id,
     ) {

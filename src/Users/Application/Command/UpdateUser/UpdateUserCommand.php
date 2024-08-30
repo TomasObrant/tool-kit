@@ -18,7 +18,6 @@ final readonly class UpdateUserCommand implements CommandInterface
     #[Assert\Email(message: 'Некорректный email адрес')]
     public string $email;
 
-    #[Assert\NotBlank]
     #[Assert\Length(min: 8, minMessage: 'Пароль должен содержать не менее {{ limit }} символов')] // Минимальная длина пароля
     #[Assert\Regex(
         pattern: '/[A-Z]/',
@@ -36,7 +35,7 @@ final readonly class UpdateUserCommand implements CommandInterface
         pattern: '/[\W_]/',
         message: 'Пароль должен содержать хотя бы один специальный символ'
     )]
-    public string $password;
+    public ?string $password;
 
     #[Assert\NotBlank]
     #[Assert\Choice(
@@ -49,7 +48,7 @@ final readonly class UpdateUserCommand implements CommandInterface
         int $id,
         string $login,
         string $email,
-        string $password,
+        ?string $password,
         string $role
     ) {
         $this->id = $id;

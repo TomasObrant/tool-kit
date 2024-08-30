@@ -1,10 +1,12 @@
 <?php
+
 declare(strict_types=1);
 
 namespace App\Shared\Infrastructure\Helpers;
 
 class InsertHelper
-{    public static function insertUserStart(): string
+{
+    public static function insertUserStart(): string
     {
         $login = 'dima';
         $email = 'user@user.ru';

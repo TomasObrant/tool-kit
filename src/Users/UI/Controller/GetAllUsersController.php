@@ -6,7 +6,6 @@ namespace App\Users\UI\Controller;
 
 use App\Shared\Application\Query\QueryBusInterface;
 use App\Users\Application\Query\GetAllUsers\GetAllUsersQuery;
-use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 

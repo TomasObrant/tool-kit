@@ -8,16 +8,14 @@ use App\Applications\Domain\Entity\Application;
 use App\Applications\Domain\Entity\ApplicationStatus;
 use App\Applications\Infrastructure\Repository\ApplicationStatusRepository;
 use Symfony\Bundle\SecurityBundle\Security;
-use Symfony\Component\HttpFoundation\FileBag;
 
 class ApplicationFactory
 {
     public function __construct(
         private Security $security,
         private ApplicationStatusRepository $applicationStatusRepository
-    ){
+    ) {
     }
-
 
     public function create(
         string $topic,
@@ -36,8 +34,6 @@ class ApplicationFactory
 
         $defaultStatus = $this->applicationStatusRepository->find(ApplicationStatus::NEW);
         $application->setStatus($defaultStatus);
-
-
 
         return $application;
     }

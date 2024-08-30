@@ -18,7 +18,7 @@ final readonly class GetAllUsersQueryHandler implements QueryHandlerInterface
         $users = $this->userRepository->findAll();
 
         if (!$users) {
-            throw new UserNotFoundException("Ни один пользователь не найден.");
+            throw new UserNotFoundException('Ни один пользователь не найден.');
         }
 
         return array_map(function ($user) {

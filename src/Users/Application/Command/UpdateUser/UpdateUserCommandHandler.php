@@ -3,7 +3,6 @@
 namespace App\Users\Application\Command\UpdateUser;
 
 use App\Shared\Application\Command\CommandHandlerInterface;
-use App\Users\Domain\Factory\UserFactory;
 use App\Users\Domain\Repository\UserRepositoryInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Psr\Log\LoggerInterface;
@@ -22,14 +21,13 @@ final readonly class UpdateUserCommandHandler implements CommandHandlerInterface
     {
         try {
             $user = $this->userRepository->find($updateUserCommand->id);
-
             if (!$user) {
-                throw new UserNotFoundException("Пользователь по данному id не найден.", 404);
+                throw new UserNotFoundException('Пользователь по данному id не найден.', 404);
             }
 
             $user->setLogin($updateUserCommand->login ?? $user->getLogin());
             $user->setEmail($updateUserCommand->email ?? $user->getEmail());
-            $user->setRoles($updateUserCommand->role !== null ? [$updateUserCommand->role] : $user->getRoles());
+            $user->setRoles(null !== $updateUserCommand->role ? [$updateUserCommand->role] : $user->getRoles());
 
             $this->entityManager->flush();
 

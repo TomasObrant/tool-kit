@@ -4,7 +4,6 @@ namespace App\Users\Domain\Factory;
 
 use App\Users\Domain\Entity\User;
 use App\Users\Domain\Service\UserPasswordHasherInterface;
-use DateTime;
 
 final readonly class UserFactory
 {

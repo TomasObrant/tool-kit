@@ -20,18 +20,17 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 ### put
-PUT http://localhost:8876/api/user/{id}
+PUT http://localhost:8876/api/user/3
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "login":"super-user",
-  "email":"test@test.com",
-  "password":"secret",
+  "login":"new_uper-user",
+  "email":"new_test@test.com",
   "role": "ROLE_ADMIN"
 }
 
 ### delete
-DELETE http://localhost:8876/api/user/{id}
+DELETE http://localhost:8876/api/user/3
 Content-Type: application/json
 Authorization: Bearer {{token}}

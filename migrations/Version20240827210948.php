@@ -19,7 +19,7 @@ final class Version20240827210948 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('CREATE TABLE "application_file" (id INT NOT NULL, application_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, url VARCHAR(255) DEFAULT NULL, mime VARCHAR(255) DEFAULT NULL, size INT DEFAULT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE "application_file" (id SERIAL PRIMARY KEY, application_id INT DEFAULT NULL, name VARCHAR(255) NOT NULL, url VARCHAR(255) DEFAULT NULL, mime VARCHAR(255) DEFAULT NULL, size INT DEFAULT NULL)');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_7B735E983E030ACD ON "application_file" (application_id)');
         $this->addSql('ALTER TABLE "application_file" ADD CONSTRAINT FK_7B735E983E030ACD FOREIGN KEY (application_id) REFERENCES "application" (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
     }

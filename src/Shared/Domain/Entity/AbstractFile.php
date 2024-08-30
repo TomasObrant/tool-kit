@@ -20,16 +20,12 @@ abstract class AbstractFile
     #[ORM\Column(nullable: true)]
     protected ?int $size = null;
 
-    /**
-     * @return string|null
-     */
     public function getName(): ?string
     {
         return $this->name;
     }
 
     /**
-     * @param string $name
      * @return $this
      */
     public function setName(string $name): self
@@ -39,16 +35,12 @@ abstract class AbstractFile
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getUrl(): ?string
     {
         return $this->url;
     }
 
     /**
-     * @param string|null $url
      * @return $this
      */
     public function setUrl(?string $url): self
@@ -58,16 +50,12 @@ abstract class AbstractFile
         return $this;
     }
 
-    /**
-     * @return string|null
-     */
     public function getMime(): ?string
     {
         return $this->mime;
     }
 
     /**
-     * @param string|null $mime
      * @return $this
      */
     public function setMime(?string $mime): self
@@ -77,16 +65,12 @@ abstract class AbstractFile
         return $this;
     }
 
-    /**
-     * @return int|null
-     */
     public function getSize(): ?int
     {
         return $this->size;
     }
 
     /**
-     * @param int|null $size
      * @return $this
      */
     public function setSize(?int $size): self

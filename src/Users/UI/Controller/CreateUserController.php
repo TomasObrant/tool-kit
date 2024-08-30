@@ -6,9 +6,7 @@ namespace App\Users\UI\Controller;
 
 use App\Shared\Application\Command\CommandBusInterface;
 use App\Shared\Domain\Validator\RequestValidatorInterface;
-use App\Shared\Infrastructure\Validator\RequestValidator;
 use App\Users\Application\Command\CreateUser\CreateUserCommand;
-use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

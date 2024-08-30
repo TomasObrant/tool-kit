@@ -17,8 +17,8 @@ use Doctrine\ORM\Mapping as ORM;
 class User extends AbstractEntity implements AuthUserInterface
 {
     #[ORM\Id]
-    #[ORM\GeneratedValue(strategy: "IDENTITY")]
-    #[ORM\Column(type: "integer")]
+    #[ORM\GeneratedValue(strategy: 'IDENTITY')]
+    #[ORM\Column(type: 'integer')]
     private ?int $id = null;
 
     #[ORM\Column(length: 50, nullable: true)]

@@ -14,9 +14,9 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Table(name: '`application_status`')]
 class ApplicationStatus
 {
-    const NEW = 1;         // Новый
-    const IN_WORK = 2;     // В работе
-    const DECIDED = 3;     // Решено
+    public const NEW = 1;         // Новый
+    public const IN_WORK = 2;     // В работе
+    public const DECIDED = 3;     // Решено
 
     #[ORM\Id]
     #[ORM\GeneratedValue]

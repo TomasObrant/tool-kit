@@ -3,7 +3,6 @@
 namespace App\Users\Application\Command\DeleteUser;
 
 use App\Shared\Application\Command\CommandHandlerInterface;
-use App\Users\Domain\Factory\UserFactory;
 use App\Users\Domain\Repository\UserRepositoryInterface;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\Security\Core\Exception\UserNotFoundException;
@@ -22,7 +21,7 @@ final readonly class DeleteUserCommandHandler implements CommandHandlerInterface
             $user = $this->userRepository->find($createUserCommand->id);
 
             if (!$user) {
-                throw new UserNotFoundException("Пользователь по данному id не найден.", 404);
+                throw new UserNotFoundException('Пользователь по данному id не найден.', 404);
             }
 
             $this->userRepository->delete($user);

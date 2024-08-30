@@ -6,7 +6,6 @@ namespace App\Users\UI\Controller;
 
 use App\Shared\Application\Command\CommandBusInterface;
 use App\Users\Application\Command\UpdateUser\UpdateUserCommand;
-use OpenApi\Attributes as OA;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,14 +21,14 @@ class UpdateUserController
     }
 
     #[Route('/api/user/{id}', name: 'user_update', methods: ['PUT'])]
-    public function __invoke(Request $request, int $id): JsonResponse
+    public function __invoke(int $id, Request $request): JsonResponse
     {
         $data = json_decode($request->getContent(), true);
         $command = new UpdateUserCommand(
-            $data['id'],
+            $id,
             $data['login'],
             $data['email'],
-            $data['password'],
+            $data['password'] ?? null,
             $data['role'],
         );
 

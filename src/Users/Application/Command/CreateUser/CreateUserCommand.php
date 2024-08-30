@@ -34,6 +34,7 @@ final readonly class CreateUserCommand implements CommandInterface
         message: 'Пароль должен содержать хотя бы один специальный символ'
     )]
     public string $password;
+
     public function __construct(
         string $login,
         string $email,

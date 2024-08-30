@@ -20,7 +20,16 @@ final class Version20240827091331 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('CREATE TABLE "user" (id INT NOT NULL, login VARCHAR(50) DEFAULT NULL, email VARCHAR(50) DEFAULT NULL, password VARCHAR(255) DEFAULT NULL, roles JSON NOT NULL, created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL, updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, deleted_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL, PRIMARY KEY(id))');
+        $this->addSql('CREATE TABLE "user" (
+            id SERIAL PRIMARY KEY,
+            login VARCHAR(50) DEFAULT NULL,
+            email VARCHAR(50) DEFAULT NULL,
+            password VARCHAR(255) DEFAULT NULL,
+            roles JSON NOT NULL,
+            created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
+            updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL,
+            deleted_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL
+        )');
 
         $this->addSql(InsertHelper::insertUserStart());
     }

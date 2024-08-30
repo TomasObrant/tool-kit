@@ -111,11 +111,11 @@ class Application extends AbstractEntity
 
     public function setApplicationFile(?ApplicationFile $applicationFile): self
     {
-        if ($applicationFile === null && $this->applicationFile !== null) {
+        if (null === $applicationFile && null !== $this->applicationFile) {
             $this->applicationFile->setApplication(null);
         }
 
-        if ($applicationFile !== null && $applicationFile->getApplication() !== $this) {
+        if (null !== $applicationFile && $applicationFile->getApplication() !== $this) {
             $applicationFile->setApplication($this);
         }
 

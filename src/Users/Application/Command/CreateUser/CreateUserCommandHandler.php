@@ -21,16 +21,23 @@ final readonly class CreateUserCommandHandler implements CommandHandlerInterface
     public function __invoke(CreateUserCommand $createUserCommand): array
     {
         try {
+            $existingUserByLogin = $this->userRepository->findOneBy(['login' => $createUserCommand->login]);
+            if ($existingUserByLogin) {
+                throw new \DomainException('Пользователь с таким логином уже существует');
+            }
+
+            $existingUserByEmail = $this->userRepository->findOneBy(['email' => $createUserCommand->email]);
+            if ($existingUserByEmail) {
+                throw new \DomainException('Пользователь с таким email уже существует');
+            }
+
             $user = $this->userFactory->create(
                 $createUserCommand->login,
                 $createUserCommand->email,
                 $createUserCommand->password,
             );
 
-//            $this->userRepository->add($user);
-
-            $this->entityManager->persist($user);
-            $this->entityManager->flush();
+            $this->userRepository->add($user);
 
             return $user->getArray();
         } catch (\Exception $exception) {

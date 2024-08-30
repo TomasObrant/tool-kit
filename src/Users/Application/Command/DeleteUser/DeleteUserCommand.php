@@ -9,6 +9,7 @@ final readonly class DeleteUserCommand implements CommandInterface
 {
     #[Assert\NotBlank(message: 'ID не должен быть пустым')]
     public int $id;
+
     public function __construct(
         int $id,
     ) {
